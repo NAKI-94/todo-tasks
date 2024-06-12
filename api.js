@@ -62,6 +62,17 @@ router.post('/create-task', function (req, res) {
         }
     });
 });
+//consultar tarea
+router.get('/all-tasks', function (req, res) {
+    TaskModel.find(function (err, data) {
+        if (err) {
+            res.status(500).send("Internal error\n");
+        }
+        else {
+            res.status(200).send(data);
+        }
+    });
+});
 //actualizar tarea
 router.post('/update-task', function (req, res) {
     TaskModel.updateOne({ TaskId: req.body.TaskId }, {
